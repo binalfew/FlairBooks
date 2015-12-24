@@ -38,6 +38,7 @@
 
     <!-- Scripts -->
     <script src="js/all.js"></script>
+    @include('partials.flash')
     @yield('scripts.footer')
 </body>
 </html>
