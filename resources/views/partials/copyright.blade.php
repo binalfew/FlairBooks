@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">                     
                 <p>
-                    2015 &copy; FlairBooks. All Rights Reserved. 
+                    {{ date('Y') }} &copy; FlairBooks. All Rights Reserved. 
                     <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                 </p>
             </div>

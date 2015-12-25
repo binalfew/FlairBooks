@@ -17,7 +17,7 @@
                 {{--@foreach($bookCategories as $category)
                     <li><a href="#" >{{ $category->name }}</a></li>
                 @endforeach --}}
-                <li><a href="#" >Events</a></li>
+                <li><a href="#" class="active">Events</a></li>
                 <li><a href="#" >Discussions</a></li>
                 <li><a href="#" >Reviews</a></li>
                 <li><a href="#" >Blog</a></li>

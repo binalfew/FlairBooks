@@ -11,17 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/all.css">
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/all.css">
     @yield('styles.header')
 </head>
 <body id="app-layout" class="header-fixed">
@@ -37,7 +27,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/all.js"></script>
+    <script src="/js/all.js"></script>
     @include('partials.flash')
     @yield('scripts.footer')
 </body>

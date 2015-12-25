@@ -1,82 +1,111 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {!! csrf_field() !!}
+    <div class="log-reg content-md margin-bottom-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 md-margin-bottom-50">
+                    <h2 class="welcome-title">Welcome to Flair Books Center</h2>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                    <div class="row margin-bottom-50">
+                        <div class="col-sm-4 md-margin-bottom-20">
+                            <div class="site-statistics">
+                                <span>20,039</span>
+                                <small>Books</small>
+                            </div>    
+                        </div>
+                        <div class="col-sm-4 md-margin-bottom-20">
+                            <div class="site-statistics">
+                                <span>54,283</span>
+                                <small>Reviews</small>
+                            </div>    
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="site-statistics">
+                                <span>376k</span>
+                                <small>Sale</small>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="members-number">
+                        <h3>Join more than <span class="shop-green">13,000</span> members</h3>
+                        <img class="img-responsive" src="/images/map.png" alt="">
+                    </div>    
+                </div>
 
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                <div class="col-md-5">                    
+                    <form method="POST" action="{{ url('/register') }}" class="log-reg-block">
+                        <h2>Create New Account</h2>
+                        @include('errors.list')
+                        {{ csrf_field() }}
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="login-input reg-input">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text"
+                                                name="first_name"
+                                                placeholder="First name"
+                                                class="form-control"
+                                                value="{{ old('first_name') }}"
+                                                required>
+                                        </label>
+                                    </section>
+                                </div>
+                                <div class="col-sm-6">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text"
+                                                name="last_name"
+                                                placeholder="Last name"
+                                                class="form-control"
+                                                value="{{ old('last_name') }}"
+                                                required>
+                                        </label>
+                                    </section>        
+                                </div>
+                            </div>                          
+                            <section>
+                                <label class="input">
+                                    <input type="email"
+                                        name="email"
+                                        placeholder="Email address"
+                                        class="form-control"
+                                        value="{{ old('email') }}"
+                                        required>
+                                </label>
+                            </section>                                
+                            <section>
+                                <label class="input">
+                                    <input type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        id="password"
+                                        class="form-control"
+                                        required>
+                                </label>
+                            </section>                                
+                            <section>
+                                <label class="input">
+                                    <input type="password"
+                                        name="password_confirmation"
+                                        placeholder="Confirm password"
+                                        class="form-control"
+                                        required>
+                                </label>
+                            </section>                                
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
-                                </button>
-                            </div>
-                        </div>
+                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">
+                            <i class="fa fa-btn fa-user"></i>Create Account
+                        </button>
                     </form>
+
+                    <div class="margin-bottom-20"></div>
+                    <p class="text-center">Already you have an account? <a href="/login">Sign In</a></p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+@stop

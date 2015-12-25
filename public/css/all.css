@@ -21549,5 +21549,7 @@ a:hover {
     color: #a10f2b;
 }
 /* Add here all your css styles (customizations) */
-
+.fa-btn {
+    margin-right: 6px;
+}
 /*# sourceMappingURL=all.css.map */
