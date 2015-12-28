@@ -42,7 +42,7 @@
                                         placeholder="Email Address"
                                         name="email"
                                         class="form-control"
-                                        value="{{old('email')}}"
+                                        value="binalfew@example.com"
                                         required>
                                 </div>
                             </label>
@@ -55,6 +55,7 @@
                                         placeholder="Password"
                                         name="password"
                                         class="form-control"
+                                        value="password" 
                                         required>
                                 </div>    
                             </label>

@@ -9,10 +9,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <ul class="left-topbar">
+                <ul class="list-inline left-topbar">
                     <li>
                         @if($signedIn)
-                            <a href="/admin">Admin</a>|
+                            <a href="/admin">Admin |</a>
                             <a href="#">Account</a>
                         @endif
                     </li>
@@ -22,10 +22,10 @@
                 <ul class="list-inline right-topbar pull-right">
                     <li>
                         @if($signedIn)
-                            <a href="/logout">Logout</a>|
+                            <a href="/logout">Logout |</a>
                             <a href="#">Wishlist (0)</a>
                         @else
-                            <a href="/login">Login</a> |
+                            <a href="/login">Login |</a>
                             <a href="/register">Register</a>
                         @endif
                     </li>
