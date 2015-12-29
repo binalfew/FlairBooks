@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form method="POST" action="{{ url('/login') }}" class="log-reg-block sky-form">
+                    <form method="POST" action="{{ url('/login') }}" class="log-reg-block">
                         <h2>Log in to your account</h2>
                         {{ csrf_field() }}
                         @include('errors.list')

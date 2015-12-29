@@ -5,6 +5,7 @@ namespace FlairBooks\Http\Controllers;
 use FlairBooks\Category;
 use Illuminate\Http\Request;
 use FlairBooks\Http\Requests;
+use FlairBooks\Facades\Search;
 use FlairBooks\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
@@ -22,6 +23,17 @@ class CategoriesController extends Controller
 
         return view('admin.categories.list', compact([
             'parent',
+            'categories',
+            'categoriesCls'
+        ]));
+    }
+
+    public function searchCategories(Request $request)
+    {
+        $categoriesCls = 'active';
+        $categories = Search::categories($request->get('search'));
+
+        return view('admin.categories.list', compact([
             'categories',
             'categoriesCls'
         ]));

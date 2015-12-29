@@ -5,6 +5,10 @@
 @stop
 
 @section('admin.content')
+    {!! Form::open(["url" => "/admin/categories/search", "method" => "GET"]) !!}
+        @include('partials.search')
+    {!! Form::close() !!}
+    <br>
 	<div class="panel panel-grey margin-bottom-40">
 		<div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-tasks"></i> Books Categories</h3>
@@ -45,6 +49,6 @@
 	</div>
     
     <div class="text-center">
-        {!! $categories->render() !!}                                                        
+        {!! $categories->appends(Request::only('search'))->render() !!}                                                        
     </div>
 @stop

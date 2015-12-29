@@ -9,3 +9,11 @@ $factory->define(FlairBooks\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(FlairBooks\Author::class, function (Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->name,
+        'last_name'	=> $faker->name,
+        'telephone' => $faker->phoneNumber
+    ];
+});

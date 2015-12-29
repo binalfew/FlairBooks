@@ -7,12 +7,14 @@ class DatabaseSeeder extends Seeder
 {
     protected $tables = [
         'users',
-        'categories'
+        'categories',
+        'authors'
     ];
 
     protected $seeders = [
         'UsersTableSeeder',
-        'CategoriesTableSeeder'
+        'CategoriesTableSeeder',
+        'AuthorsTableSeeder'
     ];
 
     public function run()
