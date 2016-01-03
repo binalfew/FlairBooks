@@ -14,6 +14,7 @@ elixir(function(mix) {
 		'footer.css',
 		'log-reg.css',
 		'sweetalert.css',
+		'select2.min.css',
 		'theme-colors/dark-red.css',
 		'custom.css'
 	]);
@@ -23,6 +24,7 @@ elixir(function(mix) {
     	'jquery-migrate.min.js',
     	'bootstrap.min.js',
         'sweetalert-dev.js',
+        'select2.min.js',
         'owl-carousel.js',
         'revolution-slider.js',
         'back-to-top.js',

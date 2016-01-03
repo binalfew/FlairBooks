@@ -27,8 +27,8 @@ $factory->define(FlairBooks\Author::class, function (Faker\Generator $faker) {
 
 $factory->define(FlairBooks\Book::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->sentence(6),
-        'description' => $faker->paragraph(),
+        'title' => $faker->sentence,
+        'description' => $faker->sentence,
         'isbn' => $faker->isbn13
     ];
 });

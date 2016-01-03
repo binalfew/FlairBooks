@@ -14,10 +14,12 @@
 					<li class="list-group-item {{ $authorsCls ?? '' }}">
 						<a href="/admin/authors"><i class="fa fa-angle-right"></i> Authors</a>
 					</li>
+					<li class="list-group-item {{ $booksCls ?? '' }}">
+						<a href="/admin/books"><i class="fa fa-angle-right"></i> Books</a>
+					</li>
 					<li class="list-group-item {{ $usersCls ?? '' }}">
 						<a href="/admin/users"><i class="fa fa-angle-right"></i> Users</a>
 					</li>
-					<li class="list-group-item"><a href="#"><i class="fa fa-angle-right"></i> Books</a></li>
 					<li class="list-group-item"><a href="#"><i class="fa fa-angle-right"></i> Reviews</a></li>
 					<li class="list-group-item"><a href="#"><i class="fa fa-angle-right"></i> Suggestions</a></li>
 				</ul>

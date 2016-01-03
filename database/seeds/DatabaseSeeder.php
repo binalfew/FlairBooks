@@ -8,13 +8,15 @@ class DatabaseSeeder extends Seeder
     protected $tables = [
         'users',
         'categories',
-        'authors'
+        'authors',
+        'books'
     ];
 
     protected $seeders = [
         'UsersTableSeeder',
         'CategoriesTableSeeder',
-        'AuthorsTableSeeder'
+        'AuthorsTableSeeder',
+        'BooksTableSeeder'
     ];
 
     public function run()

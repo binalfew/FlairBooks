@@ -81,4 +81,18 @@ class BookTest extends TestCase
 
 		$this->assertEquals(0, $book->count());
 	}
+
+	/** @test */
+	function a_book_can_sync_its_categories()
+	{
+		$book = factory(Book::class)->create();
+		$categories = factory(Category::class, 3)->create();
+		$category = $categories = factory(Category::class)->create();
+
+		$book->join($categories);
+
+		$book->sync([$category->id]);
+
+		$this->assertEquals(1, $book->count());
+	}
 }

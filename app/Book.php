@@ -22,6 +22,25 @@ class Book extends Model
         return $this->belongsToMany(Author::class);
     }
 
+    public function getCategoryListAttribute()
+    {
+        return $this->categories->lists('id')->toArray();
+    }
+
+    public function getAuthorListAttribute()
+    {
+        return $this->authors->lists('id')->toArray();
+    }
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where(function($query) use ($searchTerm) {
+            $query->where('title', 'LIKE', "%$searchTerm%")
+                  ->OrWhere('description', 'LIKE', "%$searchTerm%")
+                  ->OrWhere('isbn', 'LIKE', "%$searchTerm%");
+        });
+    }
+
 	public function count()
 	{
 		return $this->categories()->count();
@@ -55,5 +74,15 @@ class Book extends Model
     public function orphan()
     {
     	$this->categories()->detach();
+    }
+
+    public function syncAuthors($ids)
+    {
+        $this->authors()->sync($ids);
+    }
+
+    public function syncCategories($ids)
+    {
+        $this->categories()->sync($ids);
     }
 }

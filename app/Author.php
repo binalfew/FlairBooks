@@ -11,9 +11,16 @@ class Author extends Model
 
     protected $fillable = ['first_name', 'last_name', 'telephone'];
 
+    // protected $appends = ['full_name'];
+
     public function books()
     {
     	return $this->belongsToMany(Book::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return sprintf("%s %s", $this->first_name, $this->last_name);
     }
 
     public function scopeSearch($query, $searchTerm)

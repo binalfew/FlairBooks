@@ -1,11 +1,9 @@
 <?php
 
-// Pages routes 
-Route::get('/', 'PagesController@welcome');
-
 // Authentication routes
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/', 'PagesController@welcome');
     Route::get('/home', 'HomeController@index');
 });
 
@@ -29,4 +27,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::post('authors', 'AuthorsController@saveAuthor');
     Route::patch('authors/{id}', 'AuthorsController@updateAuthor');
     Route::delete('authors/{id}', 'AuthorsController@deleteAuthor');
+
+    // Book routes
+    Route::get('books', 'BooksController@getBooks');
+    Route::get('books/create', 'BooksController@createBook');
+    Route::get('books/search', 'BooksController@searchBooks');
+    Route::get('books/{id}/edit', 'BooksController@editBook');
+    Route::post('books', 'BooksController@saveBook');
+    Route::patch('books/{id}', 'BooksController@updateBook');
+    Route::delete('books/{id}', 'BooksController@deleteBook');
 });
