@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('admin.buttons')
-	<a href="/admin/authors/create" class="btn btn-primary btn-block">Add New Author</a>
-@stop
-
-@section('admin.content')
     {!! Form::open(["url" => "/admin/authors/search", "method" => "GET"]) !!}
         @include('partials.search')
     {!! Form::close() !!}
     <br>
+	<a href="/admin/authors/create" class="btn btn-primary btn-block">Add New Author</a>
+@stop
+
+@section('admin.content')
 	<div class="panel panel-grey margin-bottom-40">
 		<div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-tasks"></i> Authors</h3>

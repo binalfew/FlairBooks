@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container content">
 		<div class="row">
-			<div class="col-md-3"> 
+			<div class="col-md-3">
 				<ul class="list-group sidebar-nav-v1" id="sidebar-nav">
 					<li class="list-group-item {{ $dashboardCls ?? '' }}">
 						<a href="/admin"><i class="fa fa-angle-right"></i> Dashboard</a>

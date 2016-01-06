@@ -2,6 +2,7 @@
 
 namespace FlairBooks\Http\Controllers;
 
+use FlairBooks\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -19,6 +20,6 @@ class Controller extends BaseController
     	$this->user = Auth::user();
     	view()->share('signedIn', Auth::check());
     	view()->share('user', $this->user);
-    	//view()->share('bookCategories', Category::roots()->get());
+    	view()->share('bookCategories', Category::roots()->get());
     }
 }

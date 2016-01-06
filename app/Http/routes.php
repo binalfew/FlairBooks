@@ -33,7 +33,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::get('books/create', 'BooksController@createBook');
     Route::get('books/search', 'BooksController@searchBooks');
     Route::get('books/{id}/edit', 'BooksController@editBook');
+    Route::get('books/{id}/show', 'BooksController@showBook');
     Route::post('books', 'BooksController@saveBook');
     Route::patch('books/{id}', 'BooksController@updateBook');
     Route::delete('books/{id}', 'BooksController@deleteBook');
+
+    // Edition routes
+    Route::get('books/{book}/editions', 'EditionsController@getEditions');
+    Route::get('books/{book}/editions/create', 'EditionsController@createEdition');
+    Route::get('books/{book}/editions/{edition}/edit', 'EditionsController@editEdition');
+    Route::get('books/{book}/editions/{edition}/show', 'EditionsController@showEdition');
+    Route::post('books/{book}/editions', 'EditionsController@saveEdition');
+    Route::patch('books/{book}/editions/{edition}', 'EditionsController@updateEdition');
+    Route::delete('books/{book}/editions/{edition}', 'EditionsController@deleteEdition');
 });

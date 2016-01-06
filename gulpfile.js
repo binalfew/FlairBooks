@@ -22,6 +22,11 @@ elixir(function(mix) {
 	mix.scripts([
 		'jquery.min.js',
     	'jquery-migrate.min.js',
+    	// 'jquery-ui.min.js',
+    	// 'jquery.form.min.js',
+    	// 'jquery.validate.min.js',
+    	// 'jquery.maskedinput.min.js',
+    	// 'validation.js',
     	'bootstrap.min.js',
         'sweetalert-dev.js',
         'select2.min.js',
@@ -31,6 +36,7 @@ elixir(function(mix) {
         'jquery.mCustomScrollbar.concat.min.js',
         'app.js',
         'smoothScroll.js',
+        // 'datepicker.js',
         'custom.js'
 	]);
 });

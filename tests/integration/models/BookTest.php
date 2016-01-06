@@ -1,6 +1,8 @@
 <?php
 
 use FlairBooks\Book;
+use FlairBooks\Author;
+use FlairBooks\Edition;
 use FlairBooks\Category;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -9,6 +11,26 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class BookTest extends TestCase
 {
 	use DatabaseTransactions;
+
+	public function createBook($quantity = 1, $overrides = [])
+	{
+		return factory(Book::class, $quantity)->create($overrides);
+	}
+
+	public function createCategory($quantity = 1, $overrides = [])
+	{
+		return factory(Category::class, $quantity)->create($overrides);
+	}
+
+	public function createAuthor($quantity = 1, $overrides = [])
+	{
+		return factory(Author::class, $quantity)->create($overrides);
+	}
+
+	public function createEdition($quantity = 1, $overrides = [])
+	{
+		return factory(Edition::class, $quantity)->make($overrides);
+	}	
 
 	/** @test */
 	function a_book_has_title_and_description()
@@ -22,77 +44,127 @@ class BookTest extends TestCase
 	/** @test */
 	function a_book_can_join_a_category()
 	{
-		$book = factory(Book::class)->create();
-		$categoryOne = factory(Category::class)->create();
-		$categoryTwo = factory(Category::class)->create();
+		$book = $this->createBook();
+		$category = $this->createCategory();
 
-		$book->join($categoryOne);
-		$book->join($categoryTwo);
+		$book->addCategories([$category->id]);
 
-		$this->assertEquals(2, $book->count());
+		$this->assertEquals(1, $book->countCategories());
 	}
 
 	/** @test */
 	function a_book_can_join_multiple_categories_at_once()
 	{
-		$book = factory(Book::class)->create();
-		$categories = factory(Category::class, 2)->create();
+		$book = $this->createBook();
+		$categories = $this->createCategory(2);
 
-		$book->join($categories);
+		$book->addCategories($categories->pluck('id')->all());
 
-		$this->assertEquals(2, $book->count());
+		$this->assertEquals(2, $book->countCategories());
 	}
 
 	/** @test */
 	function a_book_can_leave_a_category()
 	{
-		$book = factory(Book::class)->create();
-		$categories = factory(Category::class, 2)->create();
+		$book = $this->createBook();
+		$categories = $this->createCategory(2);
 
-		$book->join($categories);
+		$book->addCategories($categories->pluck('id')->all());
+		$book->removeCategories([$categories[0]->id]);
 
-		$book->leave($categories[0]);
-
-		$this->assertEquals(1, $book->count());
+		$this->assertEquals(1, $book->countCategories());
 	}
 
 	/** @test */
 	function a_book_can_leave_some_categories()
 	{
-		$book = factory(Book::class)->create();
-		$categories = factory(Category::class, 3)->create();
+		$book = $this->createBook();
+		$categories = $this->createCategory(3);
 
-		$book->join($categories);
+		$book->addCategories($categories->pluck('id')->all());
+		$book->removeCategories($categories->slice(0, 2)->pluck('id')->all());
 
-		$book->leave($categories->slice(0, 2));
-
-		$this->assertEquals(1, $book->count());
+		$this->assertEquals(1, $book->countCategories());
 	}
 
 	/** @test */
 	function a_book_can_leave_all_categories()
 	{
-		$book = factory(Book::class)->create();
-		$categories = factory(Category::class, 2)->create();
+		$book = $this->createBook();
+		$categories = $this->createCategory(2);
 
-		$book->join($categories);
+		$book->addCategories($categories->pluck('id')->all());
 
-		$book->orphan();
+		$book->removeCategories();
 
-		$this->assertEquals(0, $book->count());
+		$this->assertEquals(0, $book->countCategories());
 	}
 
 	/** @test */
-	function a_book_can_sync_its_categories()
+	function a_book_can_be_published_by_one_author()
 	{
-		$book = factory(Book::class)->create();
-		$categories = factory(Category::class, 3)->create();
-		$category = $categories = factory(Category::class)->create();
+		$book = $this->createBook();
+		$author = factory(Author::class)->create();
 
-		$book->join($categories);
+		$book->addAuthors([$author->id]);
 
-		$book->sync([$category->id]);
+		$this->assertEquals(1, $book->countAuthors());
+	}
 
-		$this->assertEquals(1, $book->count());
+	/** @test */
+	function a_book_can_be_published_by_multiple_authors()
+	{
+		$book = $this->createBook();
+		$authors = $this->createAuthor(3);
+
+		$book->addAuthors($authors->pluck('id')->all());
+
+		$this->assertEquals(3, $book->countAuthors());
+	}
+
+	/** @test */
+	function a_book_can_remove_one_author()
+	{
+		$book = $this->createBook();
+		$authors = $this->createAuthor(3);
+
+		$book->addAuthors($authors->pluck('id')->all());
+		$book->removeAuthors([$authors[0]->id]);
+
+		$this->assertEquals(2, $book->countAuthors());
+	}
+
+	/** @test */
+	function a_book_can_remove_all_authors()
+	{
+		$book = $this->createBook();
+		$authors = $this->createAuthor(3);
+
+		$book->addAuthors($authors->pluck('id')->all());
+		$book->removeAuthors($authors->pluck('id')->all());
+
+		$this->assertEquals(0, $book->countAuthors());
+	}
+
+	/** @test */
+	function a_book_can_add_one_edition()
+	{
+		$book = $this->createBook();
+		$edition = $this->createEdition();
+
+		$book->addEdition($edition);
+
+		$this->assertEquals(1, $book->countEditions());
+	}
+
+	/** @test */
+	function a_book_can_add_multiple_editions_at_once()
+	{
+		$book = $this->createBook();
+		$editions = $this->createEdition(3);
+
+		$book->addEdition($editions);
+
+		$this->assertEquals(3, $book->countEditions());
 	}
 }

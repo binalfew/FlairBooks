@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('admin.buttons')
-    <a href="/admin/categories/create/{{ $parent ?? '' }}" class="btn btn-primary btn-block">Add New Category</a>
-@stop
-
-@section('admin.content')
     {!! Form::open(["url" => "/admin/categories/search", "method" => "GET"]) !!}
         @include('partials.search')
     {!! Form::close() !!}
     <br>
+    <a href="/admin/categories/create/{{ $parent ?? '' }}" class="btn btn-primary btn-block">Add New Category</a>
+@stop
+
+@section('admin.content')
 	<div class="panel panel-grey margin-bottom-40">
 		<div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-tasks"></i> Books Categories</h3>

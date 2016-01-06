@@ -69,6 +69,8 @@ class CategoriesController extends Controller
         	$category->makeChildOf(Category::findOrFail($parent));
         }
 
+        flash()->success('Created', 'Category has been created');
+
         return redirect("/admin/categories/{$parent}");
     }
 
@@ -76,6 +78,8 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->update($request->all());
+
+        flash()->success('Updated', 'Author has been updated');
 
         return redirect("/admin/categories/{$category->parent_id}");
     }

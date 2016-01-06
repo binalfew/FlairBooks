@@ -22,7 +22,7 @@
 	        App.init();
 	        App.initScrollBar();
 	        OwlCarousel.initOwlCarousel();
-	        RevolutionSlider.initRSfullWidth();     
+	        RevolutionSlider.initRSfullWidth();
 	    });
 	</script>
 @stop

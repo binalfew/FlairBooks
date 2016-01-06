@@ -34,6 +34,17 @@ class BooksController extends Controller
         return view('admin.books.list', compact(['books', 'booksCls']));
     }
 
+    public function showBook($id)
+    {
+        $booksCls = 'active';
+        $book = Book::findOrFail($id);
+
+        return view('admin.books.show', compact([
+            'book',
+            'booksCls'
+        ]));
+    }
+
     public function createBook()
     {
         $booksCls = 'active';
@@ -51,8 +62,8 @@ class BooksController extends Controller
         ]);
 
         $book = Book::create($request->all());
-        $this->syncAuthors($book, $request);
-        $this->syncCategories($book, $request);
+        $book->addAuthors($request->input('author_list'));
+        $book->addCategories($request->input('category_list'));
         
         flash()->success('Created', 'Book has been created');
 
@@ -78,8 +89,8 @@ class BooksController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        $this->syncAuthors($book, $request);
-        $this->syncCategories($book, $request);
+        $book->addAuthors($request->input('author_list'));
+        $book->addCategories($request->input('category_list'));
 
         flash()->success('Updated', 'Book has been updated');
 
@@ -88,24 +99,10 @@ class BooksController extends Controller
 
     public function deleteBook($id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::findOrFail($id); 
         $book->delete();
 
         return redirect('/admin/books');
-    }
-
-    public function syncAuthors(Book $book, Request $request)
-    {
-        if ($author_list = $request->input('author_list')) {
-            $book->syncAuthors($author_list);
-        }
-    }
-
-    public function syncCategories(Book $book, Request $request)
-    {
-        if ($category_list = $request->input('category_list')) {
-            $book->syncCategories($category_list);
-        }
     }
 
     public function categoryOptions()

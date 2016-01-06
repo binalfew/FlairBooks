@@ -2,35 +2,23 @@
 
 namespace FlairBooks;
 
+use FlairBooks\Photo;
 use FlairBooks\Author;
+use FlairBooks\Edition;
 use FlairBooks\Category;
 use Illuminate\Database\Eloquent\Model;
+use FlairBooks\Traits\BookHasAuthors;
+use FlairBooks\Traits\BookHasCategories;
+use FlairBooks\Traits\BookHasEditions;
+use FlairBooks\Traits\BookHasPhotos;
 
 class Book extends Model
 {
+    use BookHasCategories, BookHasAuthors, BookHasEditions, BookHasPhotos;
+
 	protected $table = 'books';
 
 	protected $fillable = ['title', 'description', 'isbn'];
-
-	public function categories()
-	{
-		return $this->belongsToMany(Category::class);
-	}
-
-    public function authors()
-    {
-        return $this->belongsToMany(Author::class);
-    }
-
-    public function getCategoryListAttribute()
-    {
-        return $this->categories->lists('id')->toArray();
-    }
-
-    public function getAuthorListAttribute()
-    {
-        return $this->authors->lists('id')->toArray();
-    }
 
     public function scopeSearch($query, $searchTerm)
     {
@@ -39,50 +27,5 @@ class Book extends Model
                   ->OrWhere('description', 'LIKE', "%$searchTerm%")
                   ->OrWhere('isbn', 'LIKE', "%$searchTerm%");
         });
-    }
-
-	public function count()
-	{
-		return $this->categories()->count();
-	}
-
-	public function join($category)
-	{
-		$method = $category instanceof Category ? 'save' : 'saveMany';
-
-		$this->categories()->$method($category);
-
-		return $this;
-	}
-
-    public function leave($categories = null)
-    {
-    	if($categories instanceof Category) {
-    		return $this->categories()->detach($categories->id);	
-    	}
-    	
-    	$this->leaveMany($categories);
-    }
-
-    public function leaveMany($categories)
-    {
-        $ids = $categories->pluck('id')->all();
-
-        $this->categories()->detach($ids);
-    }
-
-    public function orphan()
-    {
-    	$this->categories()->detach();
-    }
-
-    public function syncAuthors($ids)
-    {
-        $this->authors()->sync($ids);
-    }
-
-    public function syncCategories($ids)
-    {
-        $this->categories()->sync($ids);
     }
 }
