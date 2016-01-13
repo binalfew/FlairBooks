@@ -27,7 +27,7 @@ $factory->define(FlairBooks\Author::class, function (Faker\Generator $faker) {
 
 $factory->define(FlairBooks\Book::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->sentence,
+        'title' => $faker->sentence(3),
         'description' => $faker->paragraph(6),
         'isbn' => $faker->isbn13
     ];
@@ -39,6 +39,6 @@ $factory->define(FlairBooks\Edition::class, function (Faker\Generator $faker) {
         'published_at' => $faker->date,
         'version' => $faker->randomNumber(1),
         'pages' => $faker->randomNumber(3),
-        'price' => $faker->numberBetween(10, 50);
+        'price' => $faker->numberBetween(10, 50)
     ];
 });

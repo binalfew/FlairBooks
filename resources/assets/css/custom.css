@@ -2,3 +2,11 @@
 .fa-btn {
     margin-right: 6px;
 }
+
+img {
+	max-width: 100%;
+}
+
+.gallery-image {
+	margin-bottom: 1em;
+}

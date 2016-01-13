@@ -4,15 +4,28 @@ namespace FlairBooks;
 
 use FlairBooks\Book;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Photo extends Model
 {
     protected $table = 'book_photos';
 
-    protected $fillable = ['path'];
+    protected $fillable = ['name', 'path', 'thumbnail_path'];
 
     public function book()
     {
     	return $this->belongsTo(Book::class);
+    }
+
+    public function baseDir()
+    {
+        return 'images/books';
+    }
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = $name;
+        $this->path = $this->baseDir() . '/' . $name;
+        $this->thumbnail_path = $this->baseDir() . '/tn-' . $name;
     }
 }

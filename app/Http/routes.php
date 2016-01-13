@@ -5,10 +5,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'PagesController@welcome');
     Route::get('/home', 'HomeController@index');
+    Route::get('/books/{slug}', 'AppController@getBooks');
+    Route::get('/books/{id}/overview', 'AppController@showBookOverview');
 });
 
 // Admin routes
-Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function () {
 	// Category routes
 	Route::get('/', 'AdminController@getDashboard');
     Route::get('categories/search', 'CategoriesController@searchCategories');
@@ -46,4 +48,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::post('books/{book}/editions', 'EditionsController@saveEdition');
     Route::patch('books/{book}/editions/{edition}', 'EditionsController@updateEdition');
     Route::delete('books/{book}/editions/{edition}', 'EditionsController@deleteEdition');
+
+    // Photo routes
+    Route::get('books/{book}/photos', 'PhotosController@getPhotos');
+    Route::get('books/{book}/photos/create', 'PhotosController@createPhoto');
+    Route::post('books/{book}/photos',['as' => 'photo_save_path' , 'uses' => 'PhotosController@savePhoto']);
 });

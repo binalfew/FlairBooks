@@ -3,7 +3,7 @@
 @section('admin.content')
     <div class="panel panel-grey margin-bottom-40">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-tasks"></i> Add New Author</h3>
+            <h3 class="panel-title"><i class="fa fa-plus-circle"></i> Add New Author</h3>
         </div>
 
         <div class="panel-body">

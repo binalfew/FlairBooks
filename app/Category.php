@@ -4,9 +4,13 @@ namespace FlairBooks;
 
 use Baum\Node;
 use FlairBooks\Book;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Category extends Node
 {
+    use HasSlug;
+
     protected $parentColumn = 'parent_id';
 
     protected $leftColumn = 'lft';
@@ -23,6 +27,13 @@ class Category extends Node
             $query->where('code', 'LIKE', "%$search%")
                   ->OrWhere('name', 'LIKE', "%$search%");
         });
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('code');
     }
 
     public function books()

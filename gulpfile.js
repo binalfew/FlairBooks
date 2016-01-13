@@ -7,9 +7,13 @@ elixir(function(mix) {
 		'animate.css',
 		'line-icons.css',
 		'jquery.mCustomScrollbar.css',
-		'components.css',
-		'plugins.css',
-		'app.css',
+		// 'app.css',
+		// 'components.css',
+		// 'plugins.css',
+		'app1.css',
+		'shop.plugins.css',
+		'shop.blocks.css',
+		'shop.style.css',
 		'header.css',
 		'footer.css',
 		'log-reg.css',
@@ -22,11 +26,6 @@ elixir(function(mix) {
 	mix.scripts([
 		'jquery.min.js',
     	'jquery-migrate.min.js',
-    	// 'jquery-ui.min.js',
-    	// 'jquery.form.min.js',
-    	// 'jquery.validate.min.js',
-    	// 'jquery.maskedinput.min.js',
-    	// 'validation.js',
     	'bootstrap.min.js',
         'sweetalert-dev.js',
         'select2.min.js',
@@ -36,7 +35,6 @@ elixir(function(mix) {
         'jquery.mCustomScrollbar.concat.min.js',
         'app.js',
         'smoothScroll.js',
-        // 'datepicker.js',
         'custom.js'
 	]);
 });

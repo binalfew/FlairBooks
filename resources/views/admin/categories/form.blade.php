@@ -1,11 +1,3 @@
-{{ csrf_field() }}
-<div class="form-group">
-    {!! Form::label("code", "Code:", ["class" => "col-lg-2 control-label"]) !!}
-    <div class="col-lg-10">
-        {!! Form::text("code", old("code"), ["class" => "form-control", "required"]) !!}
-    </div>
-</div>
-
 <div class="form-group">
     {!! Form::label("name", "Name:", ["class" => "col-lg-2 control-label"]) !!}
     <div class="col-lg-10">

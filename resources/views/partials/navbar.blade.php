@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">            
                 @foreach($bookCategories as $category)
-                    <li><a href="#" >{{ $category->name }}</a></li>
+                    <li><a href="/books/{{ $category->code }}" >{{ $category->name }}</a></li>
                 @endforeach 
                 <li><a href="#" class="active">Events</a></li>
                 <li><a href="#" >Discussions</a></li>

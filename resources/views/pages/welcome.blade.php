@@ -9,8 +9,17 @@
 	@include('partials.slider')
 @stop
 
+@section('content')
+	@include('partials.recent')
+@stop
+
 @section('services')
-	@include('partials.services')
+	<div class="container">
+	    <div class="heading heading-v1 margin-bottom-40">
+	        <h2>Services</h2>
+	    </div>
+		@include('partials.services')
+    </div>	
 @stop
 
 @section('scripts.footer')

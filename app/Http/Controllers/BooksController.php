@@ -3,12 +3,14 @@
 namespace FlairBooks\Http\Controllers;
 
 use FlairBooks\Book;
+use FlairBooks\Photo;
 use FlairBooks\Author;
 use FlairBooks\Category;
 use Illuminate\Http\Request;
 use FlairBooks\Http\Requests;
 use FlairBooks\Facades\Search;
 use FlairBooks\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BooksController extends Controller
 {
@@ -21,7 +23,7 @@ class BooksController extends Controller
     public function getBooks()
     {
     	$booksCls = 'active';
-    	$books = Book::paginate(20);
+    	$books = Book::latest()->paginate(20);
 
     	return view('admin.books.list', compact(['books', 'booksCls']));
     }

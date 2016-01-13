@@ -11,6 +11,20 @@ trait BookHasEditions
         return $this->hasMany(Edition::class);
     }
 
+    public function lastEdition()
+    {
+        $lastEdition = $this->editions()->latest()->first();
+
+        return $lastEdition ? $lastEdition : new Edition;
+    }
+
+    public function price()
+    {
+        $lastEdition = $this->lastEdition();
+
+        return $this->lastEdition()->price;
+    }
+
     public function addEdition($edition)
     {
     	$method = $edition instanceof Edition ? 'save' : 'saveMany';

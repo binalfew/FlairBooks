@@ -16,7 +16,8 @@ class UsersTableSeeder extends Seeder
         	'first_name' => 'Binafew',
         	'last_name' => 'Kassa',
         	'email' => 'binalfew@example.com',
-        	'password' => bcrypt('password')
+        	'password' => bcrypt('password'),
+            'is_admin' => true
         ]);
     }
 }

@@ -10,4 +10,9 @@ trait BookHasPhotos
     {
         return $this->hasMany(Photo::class);
     }
+
+    public function addPhoto(Photo $photo)
+    {
+        return $this->photos()->save($photo);
+    }
 }

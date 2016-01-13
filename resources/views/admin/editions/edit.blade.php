@@ -3,7 +3,7 @@
 @section('admin.content')
 	<div class="panel panel-grey margin-bottom-40">
 		<div class="panel-heading">
-	        <h3 class="panel-title"><i class="fa fa-tasks"></i> Edit Edition</h3>
+	        <h3 class="panel-title"><i class="fa fa-edit"></i> Edit: {{ $edition->version }}</h3>
 	    </div>
 
 	    <div class="panel-body">

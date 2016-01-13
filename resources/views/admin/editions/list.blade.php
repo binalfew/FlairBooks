@@ -11,7 +11,9 @@
 @section('admin.content')
     <div class="panel panel-grey margin-bottom-40">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-tasks"></i> Book Editions</h3>
+            <h3 class="panel-title">
+                <a href="/admin/books"><i class="fa fa-arrow-circle-o-left"></i></a> Book Editions
+            </h3>
         </div>
         <div class="panel-body">
             <table class="table">

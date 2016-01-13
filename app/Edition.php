@@ -19,6 +19,16 @@ class Edition extends Model
     	return $this->belongsTo(Book::class);
     }
 
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = $price * 100;
+    }
+
+    public function getPriceAttribute($price)
+    {
+        return $price/100;
+    }
+
     public function setPublishedAtAttribute($date)
     {
     	$this->attributes['published_at'] = Carbon::parse($date);

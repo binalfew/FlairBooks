@@ -16,13 +16,13 @@ class Book extends Model
 {
     use BookHasCategories, BookHasAuthors, BookHasEditions, BookHasPhotos;
 
-	protected $table = 'books';
+    protected $table = 'books';
 
-	protected $fillable = ['title', 'description', 'isbn'];
+    protected $fillable = ['title', 'description', 'isbn'];
 
     public function scopeSearch($query, $searchTerm)
     {
-        return $query->where(function($query) use ($searchTerm) {
+        return $query->where(function ($query) use ($searchTerm) {
             $query->where('title', 'LIKE', "%$searchTerm%")
                   ->OrWhere('description', 'LIKE', "%$searchTerm%")
                   ->OrWhere('isbn', 'LIKE', "%$searchTerm%");

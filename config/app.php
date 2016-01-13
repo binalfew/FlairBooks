@@ -148,7 +148,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -158,8 +157,10 @@ return [
         FlairBooks\Providers\EventServiceProvider::class,
         FlairBooks\Providers\RouteServiceProvider::class,
         FlairBooks\Providers\SearchServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         Arrilot\Widgets\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -210,6 +211,7 @@ return [
         'Search'    => FlairBooks\Facades\Search::class,
         'Widget'       => Arrilot\Widgets\Facade::class,
         'AsyncWidget'  => Arrilot\Widgets\AsyncFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
     ],
 
 ];

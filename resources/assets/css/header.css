@@ -4,7 +4,8 @@
 	z-index: 99;
 	padding: 3px 0;
 	position: relative;
-	background: #717984;
+    background: #A10F2B;
+	/*background: #717984;*/
 }
 
 @media (max-width: 768px) {

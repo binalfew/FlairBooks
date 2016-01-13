@@ -11,10 +11,10 @@
             <div class="col-sm-6">
                 <ul class="list-inline left-topbar">
                     <li>
-                        @if($signedIn)
+                        @if($signedIn && $user->is_admin)
                             <a href="/admin">Admin |</a>
-                            <a href="#">Account</a>
                         @endif
+                        <a href="#">Account</a>
                     </li>
                 </ul>
             </div>
